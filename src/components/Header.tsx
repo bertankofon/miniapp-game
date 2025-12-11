@@ -29,45 +29,45 @@ export default function Header() {
         <div className="w-8 h-8 rounded-full bg-black"></div>
         <span className="text-sm font-medium text-gray-900">@username</span>
       </div>
-      <div className="relative" ref={menuRef}>
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="p-2 hover:bg-gray-100 rounded transition-colors"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+      <div className="flex items-center gap-2">
+        <AddMiniAppButton />
+        <div className="relative" ref={menuRef}>
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="p-2 hover:bg-gray-100 rounded transition-colors"
           >
-            <path
-              d="M3 12H21M3 6H21M3 18H21"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3 12H21M3 6H21M3 18H21"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
 
-        {isMenuOpen && (
-          <div className="absolute right-0 top-full mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50">
-            <div className="mb-4">
-              <h3 className="text-sm font-semibold text-gray-900 mb-2">Menu</h3>
-              <div className="space-y-2">
-                <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded">
-                  FAQ
-                </button>
-                <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded">
-                  Contact
-                </button>
+          {isMenuOpen && (
+            <div className="absolute right-0 top-full mt-2 w-64 bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50">
+              <div className="mb-4">
+                <h3 className="text-sm font-semibold text-gray-900 mb-2">Menu</h3>
+                <div className="space-y-2">
+                  <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded">
+                    FAQ
+                  </button>
+                  <button className="w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded">
+                    Contact
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="border-t border-gray-200 pt-4">
-              <AddMiniAppButton />
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </header>
   );

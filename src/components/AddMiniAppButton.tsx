@@ -29,16 +29,16 @@ export default function AddMiniAppButton() {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1">
       <button
         onClick={handleAddMiniApp}
         disabled={isLoading}
-        className="px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+        className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors whitespace-nowrap"
       >
         {isLoading ? "Adding..." : "Add to Base"}
       </button>
       {error && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-xs text-red-600 absolute top-full mt-1 whitespace-nowrap">{error}</p>
       )}
     </div>
   );
