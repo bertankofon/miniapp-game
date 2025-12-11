@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import MiniappReady from "@/components/MiniappReady";
-import { OnchainKitProvider } from "@coinbase/onchainkit";
-import { base } from "wagmi/chains";
+import OnchainKitProviderWrapper from "@/components/OnchainKitProviderWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,21 +47,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <OnchainKitProvider
-          chain={base}
-          config={{
-            appearance: {
-              mode: "auto",
-              theme: "default",
-            },
-          }}
-          miniKit={{
-            enabled: true,
-          }}
-        >
+        <OnchainKitProviderWrapper>
           <MiniappReady />
           {children}
-        </OnchainKitProvider>
+        </OnchainKitProviderWrapper>
       </body>
     </html>
   );
