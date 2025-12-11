@@ -1,11 +1,17 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useMiniKit } from "@coinbase/onchainkit/minikit";
 import AddMiniAppButton from "./AddMiniAppButton";
 
 export default function Header() {
+  const { context } = useMiniKit();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+  
+  // Get username from context, fallback to "username" if not available
+  const username = context?.user?.username || "username";
+  const pfpUrl = context?.user?.pfpUrl;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -26,8 +32,16 @@ export default function Header() {
   return (
     <header className="flex items-center justify-between w-full px-4 py-3 border-b border-gray-200 relative">
       <div className="flex items-center gap-2">
-        <div className="w-8 h-8 rounded-full bg-black"></div>
-        <span className="text-sm font-medium text-gray-900">@username</span>
+        {pfpUrl ? (
+          <img 
+            src={pfpUrl} 
+            alt={username}
+            className="w-8 h-8 rounded-full object-cover"
+          />
+        ) : (
+          <div className="w-8 h-8 rounded-full bg-black"></div>
+        )}
+        <span className="text-sm font-medium text-gray-900">@{username}</span>
       </div>
       <div className="flex items-center gap-2">
         <AddMiniAppButton />
