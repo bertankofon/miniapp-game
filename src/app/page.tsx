@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Header from "@/components/Header";
 import BottomNav from "@/components/BottomNav";
+import { saveScore } from "@/utils/storage";
 
 export default function Home() {
   const [clicks, setClicks] = useState(0);
@@ -19,6 +20,10 @@ export default function Home() {
         if (prev <= 1) {
           setIsGameActive(false);
           setShowInstruction(true);
+          // Save score when round ends
+          if (clicks > 0) {
+            saveScore(clicks);
+          }
           return 5; // Reset to 5 seconds
         }
         return prev - 1;
@@ -26,7 +31,7 @@ export default function Home() {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [isGameActive, timeLeft]);
+  }, [isGameActive, timeLeft, clicks]);
 
   const handleSquareClick = useCallback(() => {
     if (!isGameActive && timeLeft === 5) {
